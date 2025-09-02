@@ -114,7 +114,18 @@
   endif
 %}
 
-<{{ header_tag }} {% if header_tag == 'sticky-header' %}data-sticky-type="{{ section.settings.sticky_header_type }}"{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
+
+{%- comment -%} 
+Changed header background to orange (#FF6600) with white text (#FFFFFF),
+ removed dynamic color scheme, 
+ kept gradient and bottom border.
+{%- endcomment -%}
+<{{ header_tag }} {% if header_tag == 'sticky-header' %}data-sticky-type="{{ section.settings.sticky_header_type }}"{% endif %} class="header-wrapper gradient header-wrapper--border-bottom" style="background-color: #FF6600; color: #FFFFFF;">
+
+
+
+
+
   {%- liquid
     assign social_links = false
     assign localization_forms = false
