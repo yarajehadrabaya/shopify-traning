@@ -15,7 +15,6 @@
         "slide-0": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/www.iara.com.png",
             "image_overlay_opacity": 0,
             "heading": "<em>discover iara world</em>",
             "heading_size": "h2",
@@ -79,32 +78,25 @@
         "collection-0": {
           "type": "featured_collection",
           "settings": {
-            "collection": "women-clothing"
+            "collection": "men"
           }
         },
         "collection-1": {
           "type": "featured_collection",
           "settings": {
-            "collection": "men-clothing"
-          }
-        },
-        "collection-2": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "kids-clothing"
+            "collection": "woman"
           }
         }
       },
       "block_order": [
         "collection-0",
-        "collection-1",
-        "collection-2"
+        "collection-1"
       ],
       "settings": {
         "title": "<strong>Collections</strong>",
         "heading_size": "h1",
         "image_ratio": "square",
-        "columns_desktop": 3,
+        "columns_desktop": 2,
         "color_scheme": "",
         "show_view_all": false,
         "columns_mobile": "1",
@@ -116,7 +108,6 @@
     "image-banner": {
       "type": "image-banner",
       "settings": {
-        "image": "shopify://shop_images/www.iara.com_2.png",
         "image_overlay_opacity": 0,
         "image_height": "medium",
         "image_behavior": "none",
