@@ -15,6 +15,7 @@
         "slide-0": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/www.iara.com.png",
             "image_overlay_opacity": 0,
             "heading": "<em>discover iara world</em>",
             "heading_size": "h2",
@@ -108,11 +109,12 @@
     "image-banner": {
       "type": "image-banner",
       "settings": {
+        "image": "shopify://shop_images/www.iara.com_4.png",
         "image_overlay_opacity": 0,
         "image_height": "medium",
         "image_behavior": "none",
         "desktop_content_position": "top-left",
-        "desktop_content_alignment": "center",
+        "desktop_content_alignment": "right",
         "show_text_box": false,
         "color_scheme": "",
         "stack_images_on_mobile": true,
