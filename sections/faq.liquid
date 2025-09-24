@@ -1,0 +1,101 @@
+<div class="faq-section" {% if section.settings.rtl %}dir="rtl"{% endif %}>
+  {% for block in section.blocks %}
+    <div class="faq-item" {{ block.shopify_attributes }}>
+      <button type="button" class="faq-question">
+        {{ block.settings.question }}
+        <span class="toggle-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        {{ block.settings.answer }}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "FAQ Section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "rtl",
+      "label": "Enable RTL (Arabic)",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How can I track my order?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>You will receive a tracking link by email once your order ships.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Section",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.faq-section {
+  margin: 20px 0;
+}
+.faq-item {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+.faq-question {
+  width: 100%;
+  text-align: start;
+  background: none;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+}
+.faq-answer {
+  display: none;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #444;
+}
+.faq-answer.active {
+  display: block;
+}
+.toggle-icon {
+  font-weight: bold;
+}
+{% endstylesheet %}
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const answer = btn.nextElementSibling;
+      const icon = btn.querySelector('.toggle-icon');
+
+      answer.classList.toggle('active');
+      icon.textContent = answer.classList.contains('active') ? '-' : '+';
+    });
+  });
+});
+</script>
