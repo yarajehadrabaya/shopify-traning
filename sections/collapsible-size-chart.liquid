@@ -57,7 +57,13 @@
   <details>
     <summary>{{ section.settings.title }}</summary>
     {% if section.settings.size_chart_image != blank %}
-      <img src="{{ section.settings.size_chart_image | image_url }}" alt="Size Chart" />
+<img 
+  src="{{ section.settings.size_chart_image | image_url: width: 800 }}" 
+  alt="Size Chart" 
+  width="800" 
+  height="auto" 
+  loading="lazy" 
+/>
     {% else %}
       <p>No size chart image added yet.</p>
     {% endif %}
