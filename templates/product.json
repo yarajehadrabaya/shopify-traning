@@ -88,7 +88,10 @@
     "collapsible_size_chart_XzMJLw": {
       "type": "collapsible-size-chart",
       "name": "Collapsible Size Chart",
-      "settings": {}
+      "settings": {
+        "size_chart_image": "{{ product.metafields.custom.size_chart_reference.value.chart_image.value }}",
+        "title": "{{ product.metafields.custom.size_chart_reference.value.title.value }}"
+      }
     },
     "related-products": {
       "type": "related-products",
