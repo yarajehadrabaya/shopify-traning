@@ -85,22 +85,12 @@
         "padding_bottom": 36
       }
     },
-    "collapsible-content": {
-      "type": "collapsible-content",
+    "collapsible_size_chart_XzMJLw": {
+      "type": "collapsible-size-chart",
+      "name": "Collapsible Size Chart",
       "settings": {
-        "caption": "",
-        "heading": "{{ product.metafields.custom.size_chart_reference.value.title.value }}",
-        "heading_size": "h0",
-        "heading_alignment": "center",
-        "layout": "row",
-        "container_color_scheme": "scheme-1",
-        "color_scheme": "scheme-1",
-        "open_first_collapsible_row": true,
-        "image": "{{ product.metafields.custom.size_chart_reference.value.chart_image.value }}",
-        "image_ratio": "adapt",
-        "desktop_layout": "image_first",
-        "padding_top": 0,
-        "padding_bottom": 0
+        "size_chart_image": "{{ product.metafields.custom.size_chart_reference.value.chart_image.value }}",
+        "title": "{{ product.metafields.custom.size_chart_reference.value.title.value }}"
       }
     },
     "related-products": {
@@ -124,7 +114,7 @@
   },
   "order": [
     "main",
-    "collapsible-content",
+    "collapsible_size_chart_XzMJLw",
     "related-products"
   ]
 }
