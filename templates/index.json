@@ -121,12 +121,55 @@
         "mobile_content_alignment": "center",
         "show_text_below": true
       }
+    },
+    "faq_yjwYBK": {
+      "type": "faq",
+      "blocks": {
+        "faq_bKrGxi": {
+          "type": "faq",
+          "name": "Q1",
+          "settings": {
+            "enable_block": true,
+            "question": "How can I track my order?",
+            "answer": "You can track your order using the tracking link sent to your email after purchase."
+          }
+        },
+        "faq_rNpdTQ": {
+          "type": "faq",
+          "name": "Q2",
+          "settings": {
+            "enable_block": true,
+            "question": "What is your return policy?",
+            "answer": "You can track your order using the tracking link sent to your email after purchase."
+          }
+        },
+        "faq_pNYBMC": {
+          "type": "faq",
+          "name": "Q2",
+          "settings": {
+            "enable_block": true,
+            "question": "Your question here",
+            "answer": "Your answer goes here."
+          }
+        }
+      },
+      "block_order": [
+        "faq_bKrGxi",
+        "faq_rNpdTQ",
+        "faq_pNYBMC"
+      ],
+      "name": "FAQ Section",
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "direction": "ltr"
+      }
     }
   },
   "order": [
     "hero-slideshow",
     "all-products",
     "collection-list",
-    "image-banner"
+    "image-banner",
+    "faq_yjwYBK"
   ]
 }
