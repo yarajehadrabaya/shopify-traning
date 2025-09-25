@@ -121,55 +121,12 @@
         "mobile_content_alignment": "center",
         "show_text_below": true
       }
-    },
-    "faq_U4LtR6": {
-      "type": "faq",
-      "blocks": {
-        "faq_gFJBxi": {
-          "type": "faq",
-          "name": "Q1",
-          "settings": {
-            "enable_block": true,
-            "question": "How can I track my order?",
-            "answer": "You can track your order using the tracking link sent to your email after purchase."
-          }
-        },
-        "faq_p9pJxH": {
-          "type": "faq",
-          "name": "Q2",
-          "settings": {
-            "enable_block": true,
-            "question": "What is your return policy?",
-            "answer": "We accept returns within 14 days of delivery as long as the product is unused."
-          }
-        },
-        "faq_KDJerj": {
-          "type": "faq",
-          "name": "Q1",
-          "settings": {
-            "enable_block": true,
-            "question": "Which payment methods do you accept?",
-            "answer": "We accept credit cards, PayPal, and cash on delivery."
-          }
-        }
-      },
-      "block_order": [
-        "faq_gFJBxi",
-        "faq_p9pJxH",
-        "faq_KDJerj"
-      ],
-      "name": "FAQ Section",
-      "settings": {
-        "heading": "Frequently Asked Questions",
-        "direction": "ltr"
-      }
     }
   },
   "order": [
     "hero-slideshow",
     "all-products",
     "collection-list",
-    "image-banner",
-    "faq_U4LtR6"
+    "image-banner"
   ]
 }

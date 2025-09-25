@@ -3622,7 +3622,7 @@ details-disclosure > details {
   display: block;
   width: 60px;
   height: 4px;
-  background: linear-gradient(90deg,  #f39135, #ede0ae);
+  background: linear-gradient(90deg, #f39135, #ede0ae);
   margin: 10px auto 0;
   border-radius: 2px;
 }
@@ -3694,7 +3694,7 @@ details-disclosure > details {
 .faq-answer {
   padding: 18px 20px;
   border-top: 1px solid #eee;
-  color: #d7d7d7;
+  color: #555;
   font-size: 16px;
   line-height: 1.6;
   background: #fafafa;
