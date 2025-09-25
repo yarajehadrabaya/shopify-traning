@@ -106,22 +106,6 @@
         "padding_bottom": 36
       }
     },
-    "image-banner": {
-      "type": "image-banner",
-      "settings": {
-        "image": "shopify://shop_images/www.iara.com_4.png",
-        "image_overlay_opacity": 0,
-        "image_height": "medium",
-        "image_behavior": "none",
-        "desktop_content_position": "top-left",
-        "desktop_content_alignment": "right",
-        "show_text_box": false,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
-      }
-    },
     "faq_yjwYBK": {
       "type": "faq",
       "blocks": {
@@ -163,13 +147,29 @@
         "heading": "Frequently Asked Questions",
         "direction": "ltr"
       }
+    },
+    "image-banner": {
+      "type": "image-banner",
+      "settings": {
+        "image": "shopify://shop_images/www.iara.com_4.png",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "top-left",
+        "desktop_content_alignment": "right",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
     }
   },
   "order": [
     "hero-slideshow",
     "all-products",
     "collection-list",
-    "image-banner",
-    "faq_yjwYBK"
+    "faq_yjwYBK",
+    "image-banner"
   ]
 }
