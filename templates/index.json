@@ -121,34 +121,12 @@
         "mobile_content_alignment": "center",
         "show_text_below": true
       }
-    },
-    "faq_U4LtR6": {
-      "type": "faq",
-      "blocks": {
-        "faq_gFJBxi": {
-          "type": "faq",
-          "settings": {
-            "enable_block": true,
-            "question": "Your question here",
-            "answer": "Your answer goes here."
-          }
-        }
-      },
-      "block_order": [
-        "faq_gFJBxi"
-      ],
-      "name": "FAQ Section",
-      "settings": {
-        "heading": "Frequently Asked Questions",
-        "direction": "ltr"
-      }
     }
   },
   "order": [
     "hero-slideshow",
     "all-products",
     "collection-list",
-    "image-banner",
-    "faq_U4LtR6"
+    "image-banner"
   ]
 }
