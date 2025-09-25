@@ -1,26 +1,53 @@
-<div class="faq-section" {% if section.settings.rtl %}dir="rtl"{% endif %}>
-  {% for block in section.blocks %}
-    <div class="faq-item" {{ block.shopify_attributes }}>
-      <button type="button" class="faq-question">
-        {{ block.settings.question }}
-        <span class="toggle-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        {{ block.settings.answer }}
-      </div>
+<section 
+  class="faq-section" 
+  dir="{{ section.settings.direction }}"
+>
+  <div class="faq-container">
+    {% if section.settings.heading != blank %}
+      <h2 class="faq-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="faq-list">
+      {% for block in section.blocks %}
+        {% if block.settings.enable_block %}
+          <div class="faq-item" {{ block.shopify_attributes }}>
+            <button 
+              class="faq-question" 
+              type="button"
+              onclick="this.classList.toggle('active'); this.nextElementSibling.classList.toggle('faq-hidden');"
+            >
+              <span>{{ block.settings.question }}</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer faq-hidden">
+              <p>{{ block.settings.answer }}</p>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
     </div>
-  {% endfor %}
-</div>
+  </div>
+</section>
 
 {% schema %}
 {
   "name": "FAQ Section",
   "settings": [
     {
-      "type": "checkbox",
-      "id": "rtl",
-      "label": "Enable RTL (Arabic)",
-      "default": false
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Text Direction",
+      "options": [
+        { "value": "ltr", "label": "Left to Right (English)" },
+        { "value": "rtl", "label": "Right to Left (Arabic)" }
+      ],
+      "default": "ltr"
     }
   ],
   "blocks": [
@@ -29,16 +56,22 @@
       "name": "FAQ Item",
       "settings": [
         {
+          "type": "checkbox",
+          "id": "enable_block",
+          "label": "Show this FAQ",
+          "default": true
+        },
+        {
           "type": "text",
           "id": "question",
           "label": "Question",
-          "default": "How can I track my order?"
+          "default": "Your question here"
         },
         {
-          "type": "richtext",
+          "type": "textarea",
           "id": "answer",
           "label": "Answer",
-          "default": "<p>You will receive a tracking link by email once your order ships.</p>"
+          "default": "Your answer goes here."
         }
       ]
     }
@@ -46,56 +79,8 @@
   "presets": [
     {
       "name": "FAQ Section",
-      "category": "Text"
+      "category": "Custom"
     }
   ]
 }
 {% endschema %}
-
-{% stylesheet %}
-.faq-section {
-  margin: 20px 0;
-}
-.faq-item {
-  border-bottom: 1px solid #ddd;
-  padding: 10px 0;
-}
-.faq-question {
-  width: 100%;
-  text-align: start;
-  background: none;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 16px;
-}
-.faq-answer {
-  display: none;
-  margin-top: 8px;
-  font-size: 14px;
-  color: #444;
-}
-.faq-answer.active {
-  display: block;
-}
-.toggle-icon {
-  font-weight: bold;
-}
-{% endstylesheet %}
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const answer = btn.nextElementSibling;
-      const icon = btn.querySelector('.toggle-icon');
-
-      answer.classList.toggle('active');
-      icon.textContent = answer.classList.contains('active') ? '-' : '+';
-    });
-  });
-});
-</script>
