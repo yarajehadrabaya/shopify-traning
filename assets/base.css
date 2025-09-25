@@ -3622,7 +3622,7 @@ details-disclosure > details {
   display: block;
   width: 60px;
   height: 4px;
-  background: linear-gradient(90deg, #4a90e2, #50e3c2);
+  background: linear-gradient(90deg,  #f39135, #ede0ae);
   margin: 10px auto 0;
   border-radius: 2px;
 }
@@ -3670,7 +3670,7 @@ details-disclosure > details {
 
 /* حالة السؤال المفتوح */
 .faq-question.active {
-  background: linear-gradient(90deg, #f39135, #dfe6e4);
+  background: linear-gradient(90deg, #f39135, #ede0ae);
   color: #fff;
   border-radius: 10px 10px 0 0;
   letter-spacing: 0.5px;
