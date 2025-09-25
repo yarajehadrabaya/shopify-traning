@@ -121,21 +121,12 @@
         "mobile_content_alignment": "center",
         "show_text_below": true
       }
-    },
-    "faq_jTnALN": {
-      "type": "faq",
-      "name": "FAQ Section",
-      "settings": {
-        "heading": "Frequently Asked Questions",
-        "direction": "ltr"
-      }
     }
   },
   "order": [
     "hero-slideshow",
     "all-products",
     "collection-list",
-    "image-banner",
-    "faq_jTnALN"
+    "image-banner"
   ]
 }
