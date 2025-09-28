@@ -1,9 +1,11 @@
 <div id="announcement-bar">
   {% for block in section.blocks %}
     {% if block.settings.enabled %}
+      {% assign start_datetime = block.settings.start_date | append: "T" | append: block.settings.start_time %}
+      {% assign end_datetime = block.settings.end_date | append: "T" | append: block.settings.end_time %}
       <div class="announcement" 
-           data-start="{{ block.settings.start_time }}" 
-           data-end="{{ block.settings.end_time }}">
+           data-start="{{ start_datetime }}" 
+           data-end="{{ end_datetime }}">
         <span>{{ block.settings.message }}</span>
         {% if block.settings.button_link != blank and block.settings.button_text != blank %}
           <a href="{{ block.settings.button_link }}" class="btn">{{ block.settings.button_text }}</a>
@@ -83,13 +85,23 @@ document.addEventListener("DOMContentLoaded", function() {
         },
         {
           "type": "text",
+          "id": "start_date",
+          "label": "Start Date (YYYY-MM-DD)"
+        },
+        {
+          "type": "text",
           "id": "start_time",
-          "label": "Start Time (ISO 8601, e.g., 2025-09-28T17:00)"
+          "label": "Start Time (HH:MM, 24-hour)"
+        },
+        {
+          "type": "text",
+          "id": "end_date",
+          "label": "End Date (YYYY-MM-DD)"
         },
         {
           "type": "text",
           "id": "end_time",
-          "label": "End Time (ISO 8601, e.g., 2025-09-28T20:00)"
+          "label": "End Time (HH:MM, 24-hour)"
         },
         {
           "type": "checkbox",
