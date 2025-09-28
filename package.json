@@ -1,0 +1,14 @@
+{
+  "name": "shopify-audit",
+  "version": "1.0.0",
+  "description": "Audit and patch variant weights and SEO titles",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "apply": "node index.js --apply"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.7",
+    "dotenv": "^16.0.0"
+  }
+}
