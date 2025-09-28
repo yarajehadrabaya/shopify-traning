@@ -1,0 +1,140 @@
+<div id="announcement-bar">
+  {% for block in section.blocks %}
+    {% if block.settings.enabled %}
+      {% assign start_datetime = block.settings.start_date | append: "T" | append: block.settings.start_time %}
+      {% assign end_datetime = block.settings.end_date | append: "T" | append: block.settings.end_time %}
+      <div class="announcement" 
+           data-start="{{ start_datetime }}" 
+           data-end="{{ end_datetime }}">
+        <span>{{ block.settings.message }}</span>
+        {% if block.settings.button_link != blank and block.settings.button_text != blank %}
+          <a href="{{ block.settings.button_link }}" class="btn">{{ block.settings.button_text }}</a>
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<style>
+#announcement-bar {
+  width: 100%;
+  background-color: rgb(246, 244, 239);
+  color: #333;
+  text-align: center;
+  padding: 8px 0;
+  font-weight: bold;
+}
+
+#announcement-bar .announcement {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap; /* يخلي النص والزر يتوزعوا بشكل أفضل على الجوال */
+}
+
+#announcement-bar .btn {
+  background: #ff6b6b; /* لون جذاب */
+  color: #fff;
+  padding: 6px 12px;
+  font-size: 14px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+/* ستايل الزر للجوال */
+@media (max-width: 768px) {
+  #announcement-bar .btn {
+    padding: 5px 10px;
+    font-size: 13px;
+    border-radius: 4px;
+  }
+
+  #announcement-bar .announcement {
+    flex-direction: column; /* يجعل النص فوق الزر بدل ما يكون بجانبه */
+    gap: 5px;
+  }
+}
+</style>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const now = new Date();
+  document.querySelectorAll('#announcement-bar .announcement').forEach(function(el) {
+    const start = new Date(el.dataset.start);
+    const end = new Date(el.dataset.end);
+    if (now >= start && now <= end) {
+      el.style.display = 'flex';
+    }
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Scheduled Bar",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Manage your scheduled announcements"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "text",
+          "id": "message",
+          "label": "Message"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text"
+        },
+        {
+          "type": "text",
+          "id": "start_date",
+          "label": "Start Date (YYYY-MM-DD)"
+        },
+        {
+          "type": "text",
+          "id": "start_time",
+          "label": "Start Time (HH:MM, 24-hour)"
+        },
+        {
+          "type": "text",
+          "id": "end_date",
+          "label": "End Date (YYYY-MM-DD)"
+        },
+        {
+          "type": "text",
+          "id": "end_time",
+          "label": "End Time (HH:MM, 24-hour)"
+        },
+        {
+          "type": "checkbox",
+          "id": "enabled",
+          "label": "Enable announcement",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scheduled Bar",
+      "category": "Header"
+    }
+  ]
+}
+{% endschema %}
