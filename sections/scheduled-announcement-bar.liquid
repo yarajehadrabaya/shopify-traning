@@ -1,0 +1,46 @@
+<div id="scheduled-announcements" class="scheduled-announcement-bar" role="region" aria-live="polite">
+  {% assign announcements = shop.metaobjects.announcement.values | sort: "order" %}
+  {% for a in announcements %}
+    {% if a.enabled.value == 'true' %}
+      <div class="announcement" data-start="{{ a.start_at.value }}" data-end="{{ a.end_at.value }}">
+        <div class="msg">{{ a.message.value }}</div>
+        {% if a.button_label.value != blank and a.button_url.value != blank %}
+          <a href="{{ a.button_url.value }}" class="btn" target="_blank" rel="noopener">
+            {{ a.button_label.value }}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<style>
+.scheduled-announcement-bar {
+  background:#111; color:#fff; text-align:center; padding:10px;
+}
+.scheduled-announcement-bar .announcement { display:none; padding:6px 0; }
+.scheduled-announcement-bar .btn { margin-left:10px; text-decoration:underline; color:#fff; }
+@media (max-width:767px){
+  .scheduled-announcement-bar { font-size:0.95rem; padding:8px; }
+}
+</style>
+
+<script>
+(function(){
+  const container = document.getElementById('scheduled-announcements');
+  if(!container) return;
+  const items = container.querySelectorAll('.announcement');
+
+  function update(){
+    const now = new Date();
+    items.forEach(el=>{
+      const s = new Date(el.dataset.start);
+      const e = new Date(el.dataset.end);
+      if (isNaN(s) || isNaN(e)) { el.style.display = 'none'; return; }
+      el.style.display = (s <= now && now <= e) ? 'block' : 'none';
+    });
+  }
+  update();
+  setInterval(update, 60000); // يفحص كل دقيقة
+})();
+</script>
