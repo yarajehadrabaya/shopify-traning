@@ -304,7 +304,19 @@
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
-  {% section 'scheduled-announcement-bar' %}
+{% assign announcements = shop.metaobjects['announcement'].entries | sort: 'order' %}
+{% for a in announcements %}
+  {% if a.enabled.value %}
+    <div class="announcement">
+      <span class="msg">{{ a.message.value }}</span>
+      {% if a.button_label.value != blank and a.button_url.value != blank %}
+        <a href="{{ a.button_url.value }}" class="btn" target="_blank" rel="noopener">
+          {{ a.button_label.value }}
+        </a>
+      {% endif %}
+    </div>
+  {% endif %}
+{% endfor %}
 
     {%- if settings.cart_type == 'drawer' -%}
       {%- render 'cart-drawer' -%}
