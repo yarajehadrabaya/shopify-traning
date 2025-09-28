@@ -1,13 +1,12 @@
-<div id="scheduled-announcements" class="scheduled-announcement-bar" role="region" aria-live="polite">
-  {% assign announcements = shop.metaobjects.announcement.values | sort: "order" %}
-  {% for a in announcements %}
-    {% if a.enabled.value == 'true' %}
-      <div class="announcement" data-start="{{ a.start_at.value }}" data-end="{{ a.end_at.value }}">
-        <div class="msg">{{ a.message.value }}</div>
-        {% if a.button_label.value != blank and a.button_url.value != blank %}
-          <a href="{{ a.button_url.value }}" class="btn" target="_blank" rel="noopener">
-            {{ a.button_label.value }}
-          </a>
+<div id="announcement-bar">
+  {% for block in section.blocks %}
+    {% if block.settings.enabled %}
+      <div class="announcement" 
+           data-start="{{ block.settings.start_time }}" 
+           data-end="{{ block.settings.end_time }}">
+        <span>{{ block.settings.message }}</span>
+        {% if block.settings.button_link != blank and block.settings.button_text != blank %}
+          <a href="{{ block.settings.button_link }}" class="btn">{{ block.settings.button_text }}</a>
         {% endif %}
       </div>
     {% endif %}
@@ -15,32 +14,97 @@
 </div>
 
 <style>
-.scheduled-announcement-bar {
-  background:#111; color:#fff; text-align:center; padding:10px;
+#announcement-bar {
+  width: 100%;
+  background-color: #fffae6;
+  color: #333;
+  text-align: center;
+  padding: 10px 0;
+  font-weight: bold;
 }
-.scheduled-announcement-bar .announcement { display:none; padding:6px 0; }
-.scheduled-announcement-bar .btn { margin-left:10px; text-decoration:underline; color:#fff; }
-@media (max-width:767px){
-  .scheduled-announcement-bar { font-size:0.95rem; padding:8px; }
+
+#announcement-bar .announcement {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#announcement-bar .btn {
+  background: #333;
+  color: #fff;
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 3px;
 }
 </style>
 
 <script>
-(function(){
-  const container = document.getElementById('scheduled-announcements');
-  if(!container) return;
-  const items = container.querySelectorAll('.announcement');
-
-  function update(){
-    const now = new Date();
-    items.forEach(el=>{
-      const s = new Date(el.dataset.start);
-      const e = new Date(el.dataset.end);
-      if (isNaN(s) || isNaN(e)) { el.style.display = 'none'; return; }
-      el.style.display = (s <= now && now <= e) ? 'block' : 'none';
-    });
-  }
-  update();
-  setInterval(update, 60000); // يفحص كل دقيقة
-})();
+document.addEventListener("DOMContentLoaded", function() {
+  const now = new Date();
+  document.querySelectorAll('#announcement-bar .announcement').forEach(function(el) {
+    const start = new Date(el.dataset.start);
+    const end = new Date(el.dataset.end);
+    if (now >= start && now <= end) {
+      el.style.display = 'flex';
+    }
+  });
+});
 </script>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Manage your scheduled announcements"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "text",
+          "id": "message",
+          "label": "Message"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text"
+        },
+        {
+          "type": "text",
+          "id": "start_time",
+          "label": "Start Time (ISO 8601, e.g., 2025-09-28T17:00)"
+        },
+        {
+          "type": "text",
+          "id": "end_time",
+          "label": "End Time (ISO 8601, e.g., 2025-09-28T20:00)"
+        },
+        {
+          "type": "checkbox",
+          "id": "enabled",
+          "label": "Enable announcement",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar",
+      "category": "Header"
+    }
+  ]
+}
+{% endschema %}
